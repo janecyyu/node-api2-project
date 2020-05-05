@@ -40,10 +40,10 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/:id/comments", (req, res) => {
-  db.findCommentById(req.params.id)
+  db.findPostComments(req.params.id)
     .then((comments) => {
       if (comments) {
-        res.status(200).json({data: comments});
+        res.status(200).json({ data: comments });
       } else {
         res
           .status(404)
@@ -77,7 +77,31 @@ router.post("/", (req, res) => {
     });
 });
 
-router.post(":id/comments", (req, res) => {});
+router.post("/:id/comments", (req, res) => {
+  if (req.body.text === undefined) {
+    res
+      .status(400)
+      .json({ errorMessage: "Please provide text for the comment." });
+  }
+  db.insertComment(req.body)
+    .then((comments) => {
+      if (comments) {
+        res.status(201).json(comments);
+      } else {
+        res
+          .status(404)
+          .json({ message: "The post with the specified ID does not exist." });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({
+          error: "There was an error while saving the comment to the database",
+        });
+    });
+});
 
 router.put("/:id", (req, res) => {
   // If the request body is missing the title or contents property:
