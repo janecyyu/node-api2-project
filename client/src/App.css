@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(247, 115, 115, 0.783);
+}
+
+.card-container{
+  background-color: rgb(249, 249, 175);
+  margin: 1% 0;
+  width: 60%;
+  padding: 0 2%;
+}
