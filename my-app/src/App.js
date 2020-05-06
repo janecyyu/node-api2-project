@@ -1,13 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect,useState } from "react";
+import "./App.css";
+import axios from 'axios';
 
 function App() {
-  return (
-    <div className="App">
-     
-    </div>
-  );
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/posts")
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  },[]);
+  return <div className="App">hi</div>;
 }
 
 export default App;

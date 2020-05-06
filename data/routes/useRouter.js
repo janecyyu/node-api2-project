@@ -1,10 +1,11 @@
 const express = require("express");
-const shortid = require("shortid");
 const router = express.Router();
 const server = express();
 const db = require("../db");
 
+
 server.use(express.json());
+
 
 router.get("/", (req, res) => {
   db.find()
