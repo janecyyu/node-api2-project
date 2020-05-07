@@ -3,6 +3,8 @@ const server = express();
 const router = require('./data/routes/useRouter')
 const cors = require('cors');
 
+const port = process.env.PORT;
+
 server.use(express.json());
 server.use(cors());
 server.use('/api/posts',router);
@@ -12,5 +14,5 @@ server.get("/", (req, res) => {
 });
 
 server.listen(4000, () => {
-  console.log("\n*** Server Running on http://localhost:4000 ***\n");
+  console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
 });
