@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const server = express();
 const router = require('./data/routes/useRouter')
@@ -13,6 +14,6 @@ server.get("/", (req, res) => {
   res.json({ query: req.query, params: req.params, headers: req.headers });
 });
 
-server.listen(4000, () => {
+server.listen(port, () => {
   console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
 });
